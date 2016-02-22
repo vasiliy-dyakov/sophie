@@ -1,7 +1,7 @@
 import Events from './Events';
 
 class Store extends Events {
-    constructor({ context, storeName, state, eventHandlers }) {
+    constructor({ context, storeName, state, eventHandlers = {} }) {
         super();
 
         this.context = context;

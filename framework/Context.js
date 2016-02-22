@@ -10,10 +10,7 @@ class Context extends Events {
     }
 
     initStore(Store) {
-        let {
-                name: storeName,
-                eventHandlers
-            } = Store,
+        let { name: storeName, eventHandlers } = Store,
             store = new Store({
                 context: this,
                 storeName,

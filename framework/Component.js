@@ -11,7 +11,7 @@ class Component {
     }
 
     render() {
-        throw new Error('render method is not implement');
+        throw new Error('Default render is not implement');
     }
 }
 
