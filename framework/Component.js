@@ -12,8 +12,6 @@ class Component {
 
     setState(changes) {
         Object.assign(this.state, changes);
-
-        // this._planToRerender();
     }
 
     render() {

@@ -1,8 +1,18 @@
 import { template } from '../../framework/Templater';
 
-export default function Button({ text, onClick } = {}, children) {
+function Button({
+    text = '',
+    onClick
+} = {}, children) {
     return template `<button onClick=${onClick}>
         ${text}
         ${children}
     </button>`;
 }
+
+Button.types = {
+    text: 'string',
+    onClick: 'function'
+};
+
+export default Button;
