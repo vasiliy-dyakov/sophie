@@ -21,13 +21,13 @@ class TodoList extends Component {
     }
 
     render() {
-        let { todos, todosById } = this.state;
+        let { todos } = this.state;
 
-        return this.template `<div class="todos">
-            <ul class="todos__list">
+        return this.template `<div class="todo-list">
+            <ul class="todo-list__list">
                 ${todos.map(todo => this.template `<${Item} todo=${todo} />`)}
             </ul>
-            <div class="todos__add">
+            <div class="todo-list__add">
                 <${Input} placeholder="New todo" />
                 <${Button}>${this.props.buttonText}</${Button}>
             </div>

@@ -7,9 +7,10 @@ export default function TodoListItem({
     onEditClick,
     onRemoveClick
 }, children) {
-    return template `<li class="todos__item">
+    return template `<li class="todo-list__item">
         ${todo.text}
-        <${Button} class="todos__edit" onClick=${onEditClick}>edit</${Button}>
-        <${Button} class="todos__remove" onClick=${onRemoveClick}>remove</${Button}>
+        ${children}
+        <${Button} class="todo-list__edit" onClick=${onEditClick}>edit</${Button}>
+        <${Button} class="todo-list__remove" onClick=${onRemoveClick}>remove</${Button}>
     </li>`;
 }
