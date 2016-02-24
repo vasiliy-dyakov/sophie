@@ -1,0 +1,24 @@
+{
+  "name": "sophie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasiliy-dyakov/sophie.git"
+  },
+  "author": "Vasiliy Dyakov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vasiliy-dyakov/sophie/issues"
+  },
+  "homepage": "https://github.com/vasiliy-dyakov/sophie#readme"
+}
