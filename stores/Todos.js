@@ -1,4 +1,4 @@
-import { find } from 'lodash';
+import { find, pick } from 'lodash';
 import Store from '../framework/Store';
 
 class Todos extends Store {
@@ -52,7 +52,9 @@ class Todos extends Store {
 
         this.state = {
             todos: [...todos].splice(index, 1),
-            todosById: _.pick(todosById, (value, key) => key !== id)
+            todosById: pick(todosById, (value, key) => key !== id)
         };
     }
 }
+
+export default Todos;

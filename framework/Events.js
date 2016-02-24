@@ -4,7 +4,7 @@ class Events {
     emit(eventName, payload) {
         let { [eventName]: callbacks = [] } = this.callbacks;
 
-        callbacks.forEach(callback => callback(payload, eventName))
+        callbacks.forEach(callback => callback(payload, eventName));
     }
 
     on(eventName = 'default', callback = () => {}) {
@@ -31,3 +31,5 @@ class Events {
         }
     }
 }
+
+export default Events;

@@ -6,7 +6,7 @@ class Context extends Events {
 
         this.state = state;
 
-        stores.forEach(Store => this.initStore);
+        stores.forEach(this.initStore);
     }
 
     initStore(Store) {
@@ -28,3 +28,5 @@ class Context extends Events {
         this.emit(storeName, this.state);
     }
 }
+
+export default Context;

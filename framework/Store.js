@@ -7,7 +7,7 @@ class Store extends Events {
         this.context = context;
         this.storeName = storeName;
 
-        for (eventName in eventHandlers) {
+        for (let eventName in eventHandlers) {
             if (eventHandlers.hasOwnProperty(eventName)) {
                 this.bindEventHandler(eventName, eventHandlers[eventName]);
             }
@@ -29,7 +29,7 @@ class Store extends Events {
     }
 
     bindEventHandler(eventName, handlerName) {
-        let { context, storeName } = this;
+        let { context } = this;
 
         context.on(eventName, payload => {
             let state = this.getState(),

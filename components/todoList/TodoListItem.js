@@ -6,7 +6,7 @@ export default function TodoListItem({
     todo = {},
     onEditClick,
     onRemoveClick
-}, children) {
+} = {}, children) {
     return template `<li class="todo-list__item">
         ${todo.text}
         ${children}

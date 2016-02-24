@@ -12,3 +12,5 @@ class AddTodo extends Action {
         context.emit('ADD_TODO', { ...newTodo, id });
     }
 }
+
+export default AddTodo;

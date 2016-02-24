@@ -9,12 +9,14 @@ class Layout extends Component {
         headerText: 'Header text here'
     };
 
-    return this.template `<div class="layout">
-        <div class="layout__header">
-            ${this.props.headerText}
-        </div>
-        ${this.props.children}
-    </div>`;
+    render() {
+        return this.template `<div class="layout">
+            <div class="layout__header">
+                ${this.props.headerText}
+            </div>
+            ${this.props.children}
+        </div>`;
+    }
 }
 
 export default Layout;
