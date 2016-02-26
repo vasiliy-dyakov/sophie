@@ -1,4 +1,4 @@
-import { template } from '../../framework/Templater';
+// import { template } from '../../framework/Templater';
 
 export default function Input({
     placeholder,
@@ -6,10 +6,22 @@ export default function Input({
     onClick,
     onChange
 } = {}) {
-    return template `<input
-        placeholer="${placeholder}"
-        value="${value}"
-        onChange=${onChange}
-        onClick=${onClick}
-    />`;
+    // return template `<input
+    //     placeholer="${placeholder}"
+    //     value="${value}"
+    //     onChange=${onChange}
+    //     onClick=${onClick}
+    // />`;
+
+    return [
+        {
+            component: 'input',
+            props: {
+                placeholder,
+                value,
+                onChange,
+                onClick
+            }
+        }
+    ];
 }

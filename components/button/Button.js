@@ -1,13 +1,26 @@
-import { template } from '../../framework/Templater';
+// import { template } from '../../framework/Templater';
 
 function Button({
     text = '',
     onClick
 } = {}, children) {
-    return template `<button onClick=${onClick}>
-        ${text}
-        ${children}
-    </button>`;
+    // return template `<button onClick=${onClick}>
+    //     ${text}
+    //     ${children}
+    // </button>`;
+
+    return [
+        {
+            component: 'button',
+            props: {
+                onClick: onClick
+            },
+            children: [
+                text,
+                children
+            ]
+        }
+    ];
 }
 
 Button.types = {
