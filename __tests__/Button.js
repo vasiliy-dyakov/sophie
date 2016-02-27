@@ -1,10 +1,8 @@
-jest.dontMock('../components/button/Button.js');
-
-var { Button } = require('../components/button/Button.js');
+import Button from '../components/button/Button';
 
 describe('Button', () => {
 
-    it('should something', () => {
+    it('should return expected JSON', () => {
 
         var button = Button({ text: 'Button' });
 
