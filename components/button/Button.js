@@ -28,4 +28,4 @@ Button.types = {
     onClick: 'function'
 };
 
-export default Button;
+export { Button };
