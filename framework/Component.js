@@ -1,13 +1,14 @@
 class Component {
-    constructor({ props, children, context }) {
+    constructor(props, children, context) {
         this.context = context;
 
-        this.props = {
-            ...props,
+        this.props = Object.assign({}, props, {
             children
-        };
+        });
 
         this.state = {};
+
+        return this.render();
     }
 
     setState(changes) {

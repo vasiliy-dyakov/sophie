@@ -1,27 +1,34 @@
+import Component from '../../framework/Component';
 // import { template } from '../../framework/Templater';
 
-export default function Input({
-    placeholder,
-    value,
-    onClick,
-    onChange
-} = {}) {
-    // return template `<input
-    //     placeholer="${placeholder}"
-    //     value="${value}"
-    //     onChange=${onChange}
-    //     onClick=${onClick}
-    // />`;
+class Input extends Component {
+    render() {
+        var {
+            placeholder,
+            value,
+            onClick,
+            onChange
+        } = this.props;
 
-    return [
-        {
-            component: 'input',
-            props: {
-                placeholder,
-                value,
-                onChange,
-                onClick
+        // return template `<input
+        //     placeholer="${placeholder}"
+        //     value="${value}"
+        //     onChange=${onChange}
+        //     onClick=${onClick}
+        // />`;
+
+        return [
+            {
+                component: 'input',
+                props: {
+                    placeholder,
+                    value,
+                    onChange,
+                    onClick
+                }
             }
-        }
-    ];
+        ];
+    }
 }
+
+export default Input;

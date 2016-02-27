@@ -1,11 +1,13 @@
 import Button from '../components/button/Button';
 
 describe('Button', () => {
+    let button;
+
+    beforeEach(() => {
+        button = new Button({ text: 'Button' });
+    });
 
     it('should return expected JSON', () => {
-
-        var button = Button({ text: 'Button' });
-
         expect(JSON.stringify(button)).toEqual('[{"component":"button","props":{},"children":["Button",null]}]');
     });
 
