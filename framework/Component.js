@@ -26,18 +26,23 @@ Component.jsonToString = json => {
     } else if (typeof json === 'string') {
         return json;
     } else if (typeof json === 'object' && json.component) {
-        if (typeof json.component === 'string') {
-            return `<${json.component}${
-                json.props
-                    ? ' ' + Object.keys(json.props).reduce((memo, key) => {
-                        memo.push(`${key}="${encodeURIComponent(json.props[key])}"`);
+        let { component, props, children } = json,
+            propsString;
 
-                        return memo;
-                    }, []).join(' ')
-                    : ''
-            }>${Component.jsonToString(json.children)}</${json.component}>`;
-        } else if (json.component.prototype instanceof Component) {
-            return Component.jsonToString(new json.component(json.props, json.children));
+        if (typeof component === 'string') {
+            propsString = props
+                ? Object.keys(props).reduce((memo, key) => {
+                    if (typeof props[key] === 'string' || typeof props[key] === 'number') {
+                        memo.push(`${key}="${props[key]}"`);
+                    }
+
+                    return memo;
+                }, []).join(' ')
+                : '';
+
+            return `<${component}${propsString ? ` ${propsString}` : ''}>${Component.jsonToString(children)}</${component}>`;
+        } else if (component.prototype instanceof Component || typeof component.prototype === 'function') {
+            return Component.jsonToString(new component(props, children));
         }
     }
 

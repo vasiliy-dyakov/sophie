@@ -1,5 +1,6 @@
 {
   "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+  "verbose": true,
   "unmockedModulePathPatterns": [
     "<rootDir>/*"
   ],
