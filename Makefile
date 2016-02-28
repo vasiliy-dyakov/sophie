@@ -1,5 +1,6 @@
 NPM_ROOT = node_modules
 NPM_BIN = $(NPM_ROOT)/.bin
+TOOLS = tools
 
 .PHONY: all
 all: $(NPM_ROOT)
@@ -13,11 +14,11 @@ lint: $(NPM_ROOT)
 
 .PHONY: test
 test:
-	@$(NPM_BIN)/jest --config=jest-config.js
+	@$(NPM_BIN)/jest --config=$(TOOLS)/jest-config.json
 
 .PHONY: tdd
 tdd:
-	@DEBUG='watcher:*' node tools/tdd-watcher.js
+	@node $(TOOLS)/tdd-watcher.js
 
 .PHONY: clean
 clean:

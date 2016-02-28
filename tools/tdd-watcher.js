@@ -1,21 +1,36 @@
 var fs = require('fs'),
     spawn = require('child_process').spawn,
     ignoreRegex = /^(\.|Makefile|package.json|node_modules|tools)/,
-    debug = require('debug')('watcher:info'),
     isExecuting = false,
-    needRestart = false;
+    needRestart = false,
+    debug = function(message) {
+        process.stdout.write(message);
+    };
 
-function executeTests() {
+function executeTests(message) {
+    var timeout;
+
     isExecuting = true;
-    debug('tests begin');
+    debug(`\n${message}`);
 
-    spawn('make', ['test'], {stdio: 'inherit'})
-        .on('close', () => {
+    timeout = setInterval(function() {
+        debug('. ');
+    }, 1000);
+
+    spawn('make', ['test'])
+        .on('close', code => {
             isExecuting = false;
+            clearTimeout(timeout);
+
+            if (!code) {
+                debug('\x1b[32m ok\x1b[0m');
+            } else {
+                debug('\x1b[31m Error! Run "make test" for details\x1b[0m');
+            }
 
             if (needRestart) {
                 needRestart = false;
-                executeTests();
+                executeTests('Tests restarted');
             }
         });
 }
@@ -27,16 +42,12 @@ fs.watch('./', {
     recursive: true
 }, function(event, filename) {
     if (!ignoreRegex.test(filename)) {
-        debug(`${filename} changed`);
-
         if (!isExecuting) {
-            executeTests();
+            executeTests(`${filename} changed`);
         } else {
             needRestart = true;
         }
     }
 });
 
-debug('make tests after start');
-
-executeTests();
+executeTests('Make tests after start');
