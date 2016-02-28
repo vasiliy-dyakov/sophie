@@ -15,6 +15,10 @@ lint: $(NPM_ROOT)
 test:
 	@npm test
 
+.PHONY: tdd
+tdd:
+	@DEBUG='watcher:*' node tools/tdd-watcher.js
+
 .PHONY: clean
 clean:
 	@rm -rf node_modules
