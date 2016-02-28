@@ -1,4 +1,4 @@
-import Input from '../components/input/Input';
+import Input from '../../../components/input/Input';
 
 describe('Input', () => {
     let input;

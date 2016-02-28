@@ -1,4 +1,4 @@
-import Component from '../framework/Component';
+import Component from '../../framework/Component';
 
 class Block extends Component {
     render() {
