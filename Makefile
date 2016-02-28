@@ -13,7 +13,7 @@ lint: $(NPM_ROOT)
 
 .PHONY: test
 test:
-	@npm test
+	@$(NPM_BIN)/jest --config=jest-config.js
 
 .PHONY: tdd
 tdd:
