@@ -130,4 +130,6 @@ class Application {
     }
 }
 
+new Application();
+
 export default Application;
