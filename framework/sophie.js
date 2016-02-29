@@ -5,7 +5,7 @@ let sophie = {};
 sophie.renderToString = (json, context) => {
     if (Array.isArray(json)) {
         return json.map(item => sophie.renderToString(item, context)).join('');
-    } else if (typeof json === 'string') {
+    } else if (typeof json === 'string' || typeof json === 'number') {
         return json;
     } else if (typeof json === 'object' && json.component) {
         let { component, props, children } = json,
