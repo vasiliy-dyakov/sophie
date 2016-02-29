@@ -11,6 +11,7 @@ class Component {
 
         if (watchStores.length && this.handleStoresChange) {
             this.handleStoresChange(context.state);
+            watchStores.forEach(storeName => context.on(storeName, this.handleStoresChange));
         }
     }
 
