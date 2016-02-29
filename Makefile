@@ -5,6 +5,10 @@ TOOLS = tools
 .PHONY: all
 all: $(NPM_ROOT)
 
+.PHONY: server
+server: $(NPM_ROOT) $(DIST_CLIENT)
+
+	@node server/index.js
 $(NPM_ROOT):
 	@npm install
 

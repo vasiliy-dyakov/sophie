@@ -4,7 +4,6 @@ import Button from '../button/Button';
 import Item from './TodoListItem';
 
 class TodoList extends Component {
-    static watchStores = ['todos'];
 
     handleStoresChange(stores) {
         let {
@@ -21,7 +20,7 @@ class TodoList extends Component {
     }
 
     render() {
-        let { todos } = this.state;
+        let { todos = [] } = this.state;
 
         // return this.template `<div class="todo-list">
         //     <ul class="todo-list__list">
@@ -77,5 +76,7 @@ class TodoList extends Component {
         ];
     }
 }
+
+TodoList.watchStores = ['todos'];
 
 export default TodoList;

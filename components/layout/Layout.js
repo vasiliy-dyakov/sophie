@@ -1,14 +1,6 @@
 import Component from '../../framework/Component';
 
 class Layout extends Component {
-    static types = {
-        headerText: 'string'
-    };
-
-    static defaults = {
-        headerText: 'Header text here'
-    };
-
     render() {
         // return this.template `<div class="layout">
         //     <div class="layout__header">
@@ -37,5 +29,13 @@ class Layout extends Component {
         ];
     }
 }
+
+Layout.types = {
+    headerText: 'string'
+};
+
+Layout.defaults = {
+    headerText: 'Header text here'
+};
 
 export default Layout;
