@@ -2,13 +2,6 @@ import { find, pick } from 'lodash';
 import Store from '../framework/Store';
 
 class Todos extends Store {
-    static name = 'todos';
-
-    static eventHandlers = {
-        ADD_TODO: 'addTodo',
-        UPDATE_TODO: 'updateTodo',
-        REMOVE_TODO: 'removeTodo'
-    };
 
     initialize() {
         this.state = {
@@ -22,10 +15,9 @@ class Todos extends Store {
 
         this.state = {
             todos: [...todos, newTodo],
-            todosById: {
-                ...todosById,
+            todosById: Object.assign({}, todosById, {
                 [newTodo.id]: newTodo
-            }
+            })
         };
     }
 
@@ -38,10 +30,9 @@ class Todos extends Store {
 
         this.state = {
             todos: [...todos].splice(index, 1, todo),
-            todosById: {
-                ...todosById,
+            todosById: Object.assign({}, todosById, {
                 [todo.id]: todo
-            }
+            })
         };
     }
 
@@ -56,5 +47,13 @@ class Todos extends Store {
         };
     }
 }
+
+Todos.storeName = 'todos';
+
+Todos.eventHandlers = {
+    ADD_TODO: 'addTodo',
+    UPDATE_TODO: 'updateTodo',
+    REMOVE_TODO: 'removeTodo'
+};
 
 export default Todos;

@@ -2,9 +2,9 @@ import Component from './Component';
 
 let sophie = {};
 
-sophie.renderToString = json => {
+sophie.renderToString = (json, context) => {
     if (Array.isArray(json)) {
-        return json.map(sophie.renderToString).join('');
+        return json.map(item => sophie.renderToString(item, context)).join('');
     } else if (typeof json === 'string') {
         return json;
     } else if (typeof json === 'object' && json.component) {
@@ -20,13 +20,16 @@ sophie.renderToString = json => {
                 return memo;
             }, []).join(' ');
 
-            return `<${component}${propsString ? ` ${propsString}` : ''}>${sophie.renderToString(children)}</${component}>`;
+            return `<${component}${propsString ? ` ${propsString}` : ''}>${sophie.renderToString(children, context)}</${component}>`;
         } else if (component.prototype instanceof Component) {
-            let instance = new component(props, children);
+            let instance = new component(props, children, {
+                context,
+                watchStores: component.watchStores
+            });
 
-            return sophie.renderToString(instance.render());
+            return sophie.renderToString(instance.render(), context);
         } else if (typeof component === 'function') {
-            return sophie.renderToString(component(props, children));
+            return sophie.renderToString(component(props, children), context);
         }
     }
 

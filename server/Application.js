@@ -1,5 +1,7 @@
 import express from 'express';
 import sophie from '../framework/sophie';
+import Context from '../framework/Context';
+import Todos from '../stores/Todos';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';
@@ -37,12 +39,11 @@ class Application {
 
         try {
             var route = this.getRoute(request.path) || ERROR_404_PAGE,
-                // store = createStore(
-                //     combineReducers(reducers),
-                //     Object.assign({}, initialState, { route })
-                // ),
-                store = Object.assign({}, initialState, { route }),
-                html = this.getHtml(store);
+                context = new Context({
+                    stores: [Todos],
+                    state: Object.assign({}, initialState, { route })
+                }),
+                html = this.getHtml(context);
 
             logInfo('route', route);
 
@@ -60,7 +61,7 @@ class Application {
         }
     }
 
-    getHtml(store = {}) {
+    getHtml(context = {}) {
         return `<!DOCTYPE html><html>
             <head>
                 <title>${this.getTitle()}</title>
@@ -69,17 +70,10 @@ class Application {
             <body>
                 <div id='application'>${sophie.renderToString([
                     {
-                        // component: Provider,
-                        // props: {
-                        //     store
-                        // },
-                        // children: {
-                            // component: ApplicationComponent
-                        // }
                         component: ApplicationComponent
                     }
-                ])}</div>
-                ${this.getScripts(store)}
+                ], context)}</div>
+                ${this.getScripts(context)}
             </body>
         </html>`;
     }
@@ -98,19 +92,23 @@ class Application {
         return '';
     }
 
-    // getScripts(store) {
+    // getScripts(context) {
     //     var scripts = [
     //         '/node_modules/less/dist/less.js',
     //         '/dist/Application.js'
     //     ].map(path => `<script src="${staticRoot}${path}"></script>`);
     //
-    //     scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(store.getState())};</script>`);
+    //     scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(context.getState())};</script>`);
     //
     //     return scripts.join('');
     // }
 
-    getScripts() {
-        return '';
+    getScripts(context) {
+        let scripts = [];
+
+        scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(context.state)};</script>`);
+
+        return scripts.join('');
     }
 
     getRoute(path) {

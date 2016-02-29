@@ -1,12 +1,17 @@
 class Component {
-    constructor(props, children, { context } = {}) {
-        this.context = context;
-
+    constructor(props, children, {
+        context = {},
+        watchStores = []
+    } = {}) {
         this.props = Object.assign({}, props, {
             children
         });
 
         this.state = {};
+
+        if (watchStores.length && this.handleStoresChange) {
+            this.handleStoresChange(context.state);
+        }
     }
 
     setState(changes) {

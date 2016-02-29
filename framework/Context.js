@@ -6,11 +6,11 @@ class Context extends Events {
 
         this.state = state;
 
-        stores.forEach(this.initStore);
+        stores.forEach(Store => this.initStore(Store));
     }
 
     initStore(Store) {
-        let { name: storeName, eventHandlers } = Store,
+        let { storeName, eventHandlers } = Store,
             store = new Store({
                 context: this,
                 storeName,

@@ -1,5 +1,7 @@
 class Events {
-    callbacks = {};
+    constructor() {
+        this.callbacks = {};
+    }
 
     emit(eventName, payload) {
         let { [eventName]: callbacks = [] } = this.callbacks;
