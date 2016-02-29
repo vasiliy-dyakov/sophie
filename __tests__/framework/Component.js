@@ -1,4 +1,5 @@
 import Component from '../../framework/Component';
+import sophie from '../../framework/sophie';
 
 class Block extends Component {
     render() {
@@ -16,10 +17,10 @@ class Block extends Component {
     }
 }
 
-describe('Component.jsonToString', () => {
+describe('sophie.renderToString', () => {
 
     it('should return expected string', () => {
-        expect(Component.jsonToString([{
+        expect(sophie.renderToString([{
             component: Block
         }])).toEqual('<div class="block">Text of block</div>');
     });

@@ -1,5 +1,5 @@
 import Input from '../../../components/input/Input';
-import Component from '../../../framework/Component';
+import sophie from '../../../framework/sophie';
 
 describe('Input', () => {
     let input;
@@ -13,6 +13,6 @@ describe('Input', () => {
     });
 
     it('should return expected string', () => {
-        expect(Component.jsonToString(input.render())).toEqual('<input placeholder="Input text here" value=""></input>');
+        expect(sophie.renderToString(input.render())).toEqual('<input placeholder="Input text here" value=""></input>');
     });
 });

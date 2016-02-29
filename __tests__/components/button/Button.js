@@ -1,5 +1,5 @@
 import Button from '../../../components/button/Button';
-import Component from '../../../framework/Component';
+import sophie from '../../../framework/sophie';
 
 describe('Button', () => {
     let button;
@@ -13,6 +13,6 @@ describe('Button', () => {
     });
 
     it('should return expected string', () => {
-        expect(Component.jsonToString(button)).toEqual('<button>Button</button>');
+        expect(sophie.renderToString(button)).toEqual('<button>Button</button>');
     });
 });
