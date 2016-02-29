@@ -9,10 +9,10 @@ describe('Input', () => {
     });
 
     it('should return expected JSON', () => {
-        expect(JSON.stringify(input)).toEqual('[{"component":"input","props":{"placeholder":"Input text here","value":""}}]');
+        expect(JSON.stringify(input.render())).toEqual('[{"component":"input","props":{"placeholder":"Input text here","value":""}}]');
     });
 
     it('should return expected string', () => {
-        expect(Component.jsonToString(input)).toEqual('<input placeholder="Input text here" value=""></input>');
+        expect(Component.jsonToString(input.render())).toEqual('<input placeholder="Input text here" value=""></input>');
     });
 });

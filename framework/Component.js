@@ -1,5 +1,5 @@
 class Component {
-    constructor(props, children, context) {
+    constructor(props, children, { context } = {}) {
         this.context = context;
 
         this.props = Object.assign({}, props, {
@@ -7,8 +7,6 @@ class Component {
         });
 
         this.state = {};
-
-        return this.render();
     }
 
     setState(changes) {
@@ -30,19 +28,21 @@ Component.jsonToString = json => {
             propsString;
 
         if (typeof component === 'string') {
-            propsString = props
-                ? Object.keys(props).reduce((memo, key) => {
-                    if (typeof props[key] === 'string' || typeof props[key] === 'number') {
-                        memo.push(`${key}="${props[key]}"`);
-                    }
+            propsString = props && Object.keys(props).reduce((memo, key) => {
+                if (typeof props[key] === 'string' || typeof props[key] === 'number') {
+                    memo.push(`${key}="${props[key]}"`);
+                }
 
-                    return memo;
-                }, []).join(' ')
-                : '';
+                return memo;
+            }, []).join(' ');
 
             return `<${component}${propsString ? ` ${propsString}` : ''}>${Component.jsonToString(children)}</${component}>`;
-        } else if (component.prototype instanceof Component || typeof component.prototype === 'function') {
-            return Component.jsonToString(new component(props, children));
+        } else if (component.prototype instanceof Component) {
+            let instance = new component(props, children);
+
+            return Component.jsonToString(instance.render());
+        } else if (typeof component === 'function') {
+            return Component.jsonToString(component(props, children));
         }
     }
 
