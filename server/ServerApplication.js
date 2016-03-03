@@ -78,7 +78,7 @@ class ServerApplication {
     }
 
     getTitle() {
-        return 'Sophie';
+        return 'Todos';
     }
 
     // getCss() {
