@@ -1,7 +1,7 @@
 import { renderDOM } from 'jsunit';
-import ApplicationComponent from '../components/application/Application.js';
+import Application from '../components/application/Application.js';
 
-class Application {
+class ClientApplication {
     constructor(/* state */) {
         // var store = this.createStore(state);
 
@@ -13,9 +13,9 @@ class Application {
                     //     store
                     // },
                     // children: {
-                        // component: ApplicationComponent
+                        // component: Application
                     // }
-                    component: ApplicationComponent
+                    component: Application
                 }
             ],
             document.getElementById('application')
@@ -27,4 +27,4 @@ class Application {
     // }
 }
 
-new Application(window.__STATE__);
+new ClientApplication(window.__STATE__);

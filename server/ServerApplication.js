@@ -1,24 +1,24 @@
 import express from 'express';
 import { Context, renderToString } from 'jsunit';
-import Todos from '../stores/Todos';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';
+import Todos from '../stores/Todos';
 import staticConfig from '../configs/static';
 import initialState from '../configs/initialState';
-import ApplicationComponent from '../components/application/Application';
+import Application from '../components/application/Application';
 import env from '../configs/env';
 
 defaults(process.env, env);
 debug.enable(process.env.DEBUG);
 
-var logInfo = debug('framework:info:Application'),
-    logError = debug('framework:error:Application'),
+var logInfo = debug('framework:info:ServerApplication'),
+    logError = debug('framework:error:ServerApplication'),
     staticRoot = process.env.STATIC_ROOT,
     rootDir = __dirname.split('/').slice(0, -1).join('/'),
     ERROR_404_PAGE = 'Error404';
 
-class Application {
+class ServerApplication {
     constructor() {
         this.initServer();
     }
@@ -69,7 +69,7 @@ class Application {
             <body>
                 <div id='application'>${renderToString([
                     {
-                        component: ApplicationComponent
+                        component: Application
                     }
                 ], context)}</div>
                 ${this.getScripts(context)}
@@ -94,7 +94,7 @@ class Application {
     // getScripts(context) {
     //     var scripts = [
     //         '/node_modules/less/dist/less.js',
-    //         '/dist/Application.js'
+    //         '/dist/ClientApplication.js'
     //     ].map(path => `<script src="${staticRoot}${path}"></script>`);
     //
     //     scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(context.getState())};</script>`);
@@ -127,6 +127,6 @@ class Application {
     }
 }
 
-new Application();
+new ServerApplication();
 
-export default Application;
+export default ServerApplication;
