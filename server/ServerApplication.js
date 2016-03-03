@@ -16,7 +16,7 @@ var logInfo = debug('framework:info:ServerApplication'),
     logError = debug('framework:error:ServerApplication'),
     staticRoot = process.env.STATIC_ROOT,
     rootDir = __dirname.split('/').slice(0, -1).join('/'),
-    ERROR_404_PAGE = 'Error404';
+    ERROR_404 = 'Error404';
 
 class ServerApplication {
     constructor() {
@@ -37,7 +37,7 @@ class ServerApplication {
         logInfo('Request path', request.path);
 
         try {
-            var route = this.getRoute(request.path) || ERROR_404_PAGE,
+            var route = this.getRoute(request.path) || ERROR_404,
                 context = new Context({
                     stores: [Todos],
                     state: Object.assign({}, initialState, { route })
@@ -46,7 +46,7 @@ class ServerApplication {
 
             logInfo('route', route);
 
-            if (route === ERROR_404_PAGE) {
+            if (route === ERROR_404) {
                 response.status(404);
             }
 
