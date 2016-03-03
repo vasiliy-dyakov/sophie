@@ -1,4 +1,4 @@
-import Component from '../framework/Component';
+import { Component } from 'jsunit';
 import TodoList from '../components/todoList/TodoList';
 import Layout from '../components/layout/Layout';
 

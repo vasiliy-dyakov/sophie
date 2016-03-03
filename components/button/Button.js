@@ -1,4 +1,4 @@
-// import { template } from '../../framework/Templater';
+// import { template } from 'jsunit';
 
 function Button({
     text = '',

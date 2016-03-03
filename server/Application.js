@@ -1,6 +1,5 @@
 import express from 'express';
-import sophie from '../framework/sophie';
-import Context from '../framework/Context';
+import { Context, renderToString } from 'jsunit';
 import Todos from '../stores/Todos';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
@@ -68,7 +67,7 @@ class Application {
                 ${this.getCss()}
             </head>
             <body>
-                <div id='application'>${sophie.renderToString([
+                <div id='application'>${renderToString([
                     {
                         component: ApplicationComponent
                     }

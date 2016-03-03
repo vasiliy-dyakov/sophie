@@ -1,11 +1,11 @@
-import sophie from '../framework/sophie';
+import { renderDOM } from 'jsunit';
 import ApplicationComponent from '../components/application/Application.js';
 
 class Application {
     constructor(/* state */) {
         // var store = this.createStore(state);
 
-        sophie.render(
+        renderDOM(
             [
                 {
                     // component: Provider,

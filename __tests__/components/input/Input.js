@@ -1,5 +1,5 @@
 import Input from '../../../components/input/Input';
-import sophie from '../../../framework/sophie';
+import { renderToString } from 'jsunit';
 
 describe('Input', () => {
     let input;
@@ -13,6 +13,6 @@ describe('Input', () => {
     });
 
     it('should return expected string', () => {
-        expect(sophie.renderToString(input.render())).toEqual('<input placeholder="Input text here" value=""></input>');
+        expect(renderToString(input.render())).toEqual('<input placeholder="Input text here" value=""></input>');
     });
 });

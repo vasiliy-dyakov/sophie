@@ -1,5 +1,5 @@
 import Button from '../../../components/button/Button';
-import sophie from '../../../framework/sophie';
+import { renderToString } from 'jsunit';
 
 describe('Button', () => {
     let button;
@@ -13,6 +13,6 @@ describe('Button', () => {
     });
 
     it('should return expected string', () => {
-        expect(sophie.renderToString(button)).toEqual('<button>Button1 + 2 = 3</button>');
+        expect(renderToString(button)).toEqual('<button>Button1 + 2 = 3</button>');
     });
 });

@@ -1,5 +1,4 @@
-import Component from '../../framework/Component';
-import sophie from '../../framework/sophie';
+import { Component, renderToString } from 'jsunit';
 
 class Block extends Component {
     render() {
@@ -17,10 +16,10 @@ class Block extends Component {
     }
 }
 
-describe('sophie.renderToString', () => {
+describe('renderToString', () => {
 
     it('should return expected string', () => {
-        expect(sophie.renderToString([{
+        expect(renderToString([{
             component: Block
         }])).toEqual('<div class="block">Text of block</div>');
     });

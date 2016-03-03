@@ -1,4 +1,4 @@
-import Component from '../../framework/Component';
+import { Component } from 'jsunit';
 
 class Layout extends Component {
     render() {

@@ -1,5 +1,4 @@
-import Component from '../../framework/Component';
-// import { template } from '../../framework/Templater';
+import { Component/*, template*/ } from 'jsunit';
 
 class Input extends Component {
     render() {

@@ -1,4 +1,4 @@
-import Component from '../../framework/Component';
+import { Component } from 'jsunit';
 import * as pages from '../../pages/pages';
 
 class Application extends Component {

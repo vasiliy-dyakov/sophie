@@ -1,5 +1,5 @@
 import { find, pick } from 'lodash';
-import Store from '../framework/Store';
+import { Store } from 'jsunit';
 
 class Todos extends Store {
 

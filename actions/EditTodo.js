@@ -1,4 +1,4 @@
-import Action from '../framework/Action';
+import { Action } from 'jsunit';
 
 class EditTodo extends Action {
     execute({ payload: todo, context }) {

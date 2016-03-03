@@ -1,4 +1,4 @@
-// import { template } from '../../framework/Templater';
+// import { template } from 'jsunit';
 import Button from '../button/Button';
 
 // Stateless and actionless component
