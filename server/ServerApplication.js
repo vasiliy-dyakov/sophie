@@ -103,7 +103,9 @@ class ServerApplication {
     // }
 
     getScripts(context) {
-        let scripts = [];
+        let scripts = [
+            '/dist/ClientApplication.js'
+        ].map(path => `<script src="${staticRoot}${path}"></script>`);
 
         scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(context.state)};</script>`);
 

@@ -1,30 +1,20 @@
-import { renderDOM } from 'jsunit';
+import { Context, renderDOM } from 'jsunit';
 import Application from '../components/application/Application.js';
+import Todos from '../stores/Todos';
 
 class ClientApplication {
-    constructor(/* state */) {
-        // var store = this.createStore(state);
+    constructor(state) {
+        let context = new Context({
+            stores: [Todos],
+            state
+        });
 
         renderDOM(
-            [
-                {
-                    // component: Provider,
-                    // props: {
-                    //     store
-                    // },
-                    // children: {
-                        // component: Application
-                    // }
-                    component: Application
-                }
-            ],
+            {component: Application},
+            context,
             document.getElementById('application')
         );
     }
-
-    // createStore(initialState) {
-    //     return createStore(combineReducers(reducers), initialState);
-    // }
 }
 
 new ClientApplication(window.__STATE__);
