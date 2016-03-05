@@ -23,6 +23,7 @@ $(DIST_CLIENT): $(NPM_ROOT)
 	@$(NPM_BIN)/browserify $(BROWSERIFY_PARAMS)
 
 watchify: $(NPM_ROOT)
+	@mkdir -p dist
 	@$(NPM_BIN)/watchify $(BROWSERIFY_PARAMS)
 
 lint: $(NPM_ROOT)

@@ -1,4 +1,3 @@
-import { find, pick } from 'lodash';
 import { Store } from 'jsunit';
 
 class Todos extends Store {
@@ -10,40 +9,47 @@ class Todos extends Store {
         };
     }
 
+    groupTodosById(todos) {
+        return todos.reduce((memo, value, index) => {
+            memo[value.id] = value;
+
+            return memo;
+        }, {});
+    }
+
     addTodo(newTodo) {
-        let { todos, todosById } = this.state;
+        let { todos: prevTodos } = this.state,
+            todos = [...prevTodos, newTodo];
 
         this.state = {
-            todos: [...todos, newTodo],
-            todosById: Object.assign({}, todosById, {
-                [newTodo.id]: newTodo
-            })
+            todos,
+            todosById: this.groupTodosById(todos)
         };
     }
 
     updateTodo(todo) {
-        let { todos, todosById } = this.state,
-            oldTodo = find(todos, {
-                id: todo.id
-            }),
-            index = todos.indexOf(oldTodo);
+        let { todos: prevTodos } = this.state,
+            todos = prevTodos.map(item => item.id === todo.id ? todo : item);
 
         this.state = {
-            todos: [...todos].splice(index, 1, todo),
-            todosById: Object.assign({}, todosById, {
-                [todo.id]: todo
-            })
+            todos,
+            todosById: this.groupTodosById(todos)
         };
     }
 
     removeTodo(id) {
-        let { todos, todosById } = this.state,
-            oldTodo = find(todos, { id }),
-            index = todos.indexOf(oldTodo);
+        let { todos: prevTodos } = this.state;
+            todos = prevTodos.reduce((memo, item) => {
+                if (item.id !== id) {
+                    memo.push(value);
+                }
+
+                return memo;
+            }, []);
 
         this.state = {
-            todos: [...todos].splice(index, 1),
-            todosById: pick(todosById, (value, key) => key !== id)
+            todos,
+            todosById: this.groupTodosById(todos)
         };
     }
 }

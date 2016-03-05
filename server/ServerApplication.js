@@ -81,11 +81,11 @@ class ServerApplication {
         return 'Todos';
     }
 
-    // getCss() {
-    //     return ['/components/application/application.less'].map(path => {
-    //         return `<link rel="stylesheet/less" type="text/css" href="${staticRoot}${path}"/>`;
-    //     });
-    // }
+    getCss() {
+        return ['/components/application/application.less'].map(path => {
+            return `<link rel="stylesheet/less" type="text/css" href="${staticRoot}${path}"/>`;
+        });
+    }
 
     getCss() {
         return '';
@@ -93,7 +93,7 @@ class ServerApplication {
 
     getScripts(context) {
         let scripts = [
-            '/node_modules/less/dist/less.js',
+            // '/node_modules/less/dist/less.js',
             '/dist/ClientApplication.js'
         ].map(path => `<script src="${staticRoot}${path}"></script>`);
 
