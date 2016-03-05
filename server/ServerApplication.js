@@ -91,19 +91,9 @@ class ServerApplication {
         return '';
     }
 
-    // getScripts(context) {
-    //     var scripts = [
-    //         '/node_modules/less/dist/less.js',
-    //         '/dist/ClientApplication.js'
-    //     ].map(path => `<script src="${staticRoot}${path}"></script>`);
-    //
-    //     scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(context.getState())};</script>`);
-    //
-    //     return scripts.join('');
-    // }
-
     getScripts(context) {
         let scripts = [
+            '/node_modules/less/dist/less.js',
             '/dist/ClientApplication.js'
         ].map(path => `<script src="${staticRoot}${path}"></script>`);
 
