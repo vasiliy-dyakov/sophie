@@ -1,9 +1,9 @@
 import express from 'express';
-import { Context, renderToString } from 'jsunit';
+import { Store, renderToString } from 'jsunit';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';
-import Todos from '../stores/Todos';
+import Todos from '../reducers/Todos';
 import staticConfig from '../configs/static';
 import initialState from '../configs/initialState';
 import Application from '../components/application/Application';
@@ -38,11 +38,11 @@ class ServerApplication {
 
         try {
             var route = this.getRoute(request.path) || ERROR_404,
-                context = new Context({
-                    stores: [Todos],
+                store = new Store({
+                    reducers: [Todos],
                     state: Object.assign({}, initialState, { route })
                 }),
-                html = this.getHtml(context);
+                html = this.getHtml(store);
 
             logInfo('route', route);
 
@@ -60,7 +60,7 @@ class ServerApplication {
         }
     }
 
-    getHtml(context = {}) {
+    getHtml(store = {}) {
         return `<!DOCTYPE html><html>
             <head>
                 <title>${this.getTitle()}</title>
@@ -71,8 +71,8 @@ class ServerApplication {
                     {
                         component: Application
                     }
-                ], context)}</div>
-                ${this.getScripts(context)}
+                ], store)}</div>
+                ${this.getScripts(store)}
             </body>
         </html>`;
     }
@@ -91,13 +91,13 @@ class ServerApplication {
         return '';
     }
 
-    getScripts(context) {
+    getScripts(store) {
         let scripts = [
             // '/node_modules/less/dist/less.js',
             '/dist/ClientApplication.js'
         ].map(path => `<script src="${staticRoot}${path}"></script>`);
 
-        scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(context.state)};</script>`);
+        scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(store.dehydrate())};</script>`);
 
         return scripts.join('');
     }

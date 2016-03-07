@@ -2,25 +2,12 @@ import { Component } from 'jsunit';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Item from './TodoListItem';
+import GetTodos from '../../actions/GetTodos';
 
 class TodoList extends Component {
 
-    handleStoresChange(stores) {
-        let {
-            todos: {
-                todos = [],
-                todosById = {}
-            } = {}
-        } = stores;
-
-        this.setState({
-            todos,
-            todosById
-        });
-    }
-
     render() {
-        let { todos = [] } = this.state;
+        let { todos = [] } = this.props;
 
         // return this.template `<div class="todo-list">
         //     <ul class="todo-list__list">
@@ -77,6 +64,28 @@ class TodoList extends Component {
     }
 }
 
-TodoList.watchStores = ['todos'];
+TodoList.types = {
+    todos: 'array',
+    todosById: 'object'
+};
+TodoList.defaults = {
+    todos: [],
+    todosById: {}
+};
+
+TodoList.actions = [GetTodos];
+TodoList.watch = ['todos'];
+TodoList.connect = function({
+    todos: {
+        todos = [],
+        todosById = {}
+    } = {}
+} = {}) {
+
+    return {
+        todos,
+        todosById
+    };
+};
 
 export default TodoList;

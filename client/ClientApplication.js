@@ -1,17 +1,17 @@
-import { Context, renderDOM } from 'jsunit';
+import { Store, renderDOM } from 'jsunit';
 import Application from '../components/application/Application.js';
-import Todos from '../stores/Todos';
+import Todos from '../reducers/Todos';
 
 class ClientApplication {
     constructor(state) {
-        let context = new Context({
-            stores: [Todos],
+        let store = new Store({
+            reducers: [Todos],
             state
         });
 
         renderDOM(
             {component: Application},
-            context,
+            store,
             document.getElementById('application')
         );
     }

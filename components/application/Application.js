@@ -13,16 +13,8 @@ class Application extends Component {
     //     this.props.dispatch(changeRoute(event.state.route));
     // }
 
-    handleStoresChange(stores) {
-        let { route } = stores;
-
-        this.setState({
-            route
-        });
-    }
-
     render() {
-        let PageComponent = pages[this.state.route || 'Index'];
+        let PageComponent = pages[this.props.route || 'Index'];
 
         return [
             {
@@ -32,6 +24,11 @@ class Application extends Component {
     }
 }
 
-Application.watchStores = ['route'];
+Application.watch = ['route'];
+Application.connect = function({ route }) {
+    return {
+        route
+    };
+};
 
 export default Application;

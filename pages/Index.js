@@ -35,4 +35,6 @@ class Index extends Component {
     }
 }
 
+Index.actions = [].concat(TodoList.actions);
+
 export default Index;
