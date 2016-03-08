@@ -9,7 +9,7 @@ class AddTodo extends Action {
                 ? ids[length - 1] + 1
                 : 0;
 
-        store.emit('ADD_TODO', { ...newTodo, id });
+        store.emit('ADD_TODO', Object.assign(newTodo, {id}));
     }
 }
 

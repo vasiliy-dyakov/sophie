@@ -38,7 +38,7 @@ class ServerApplication {
 
         try {
             var route = this.getRoute(request.path) || ERROR_404,
-                { actions = [] } = pages[route],
+                { initActions = [] } = pages[route],
                 store = new Store({
                     reducers: [Todos],
                     state: Object.assign({}, { route })
@@ -50,7 +50,7 @@ class ServerApplication {
                 response.status(404);
             }
 
-            Promise.all(actions.map(Action => new Action({ store })))
+            Promise.all(initActions.map(Action => new Action({ store })))
                 .then(() => response.send(this.getHtml(store)))
                 .catch(error => {
                     this.send500({ error, response });

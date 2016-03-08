@@ -3,6 +3,9 @@ import Input from '../input/Input';
 import Button from '../button/Button';
 import Item from './TodoListItem';
 import GetTodos from '../../actions/GetTodos';
+import AddTodo from '../../actions/AddTodo';
+import EditTodo from '../../actions/EditTodo';
+import RemoveTodo from '../../actions/RemoveTodo';
 
 class TodoList extends Component {
 
@@ -73,7 +76,9 @@ TodoList.defaults = {
     todosById: {}
 };
 
-TodoList.actions = [GetTodos];
+TodoList.initActions = [GetTodos];
+TodoList.actions = [AddTodo, EditTodo, RemoveTodo];
+
 TodoList.watch = ['todos'];
 TodoList.connect = function({
     todos: {
