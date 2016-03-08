@@ -1,8 +1,8 @@
 import { Action } from 'jsunit';
 
 class EditTodo extends Action {
-    execute({ payload: todo, context }) {
-        context.emit('UPDATE_TODO', todo);
+    execute({ payload: todo, store }) {
+        store.emit('UPDATE_TODO', todo);
     }
 }
 

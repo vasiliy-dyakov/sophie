@@ -56,11 +56,9 @@ class Todos extends Reducer {
         };
     }
 
-    rehydrate(state = {}) {
+    dehydrate(state = {}) {
         let {
-            todos: {
-                todos = []
-            } = {}
+            todos = []
         } = state;
 
         return {
@@ -68,11 +66,9 @@ class Todos extends Reducer {
         };
     }
 
-    dehydrate(state = {}) {
+    rehydrate(state = {}) {
         let {
-            todos: {
-                todos = []
-            } = {}
+            todos = []
         } = state;
 
         return {

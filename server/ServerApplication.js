@@ -5,9 +5,9 @@ import debug from 'debug';
 import routes from '../configs/routes';
 import Todos from '../reducers/Todos';
 import staticConfig from '../configs/static';
-import initialState from '../configs/initialState';
 import Application from '../components/application/Application';
 import env from '../configs/env';
+import * as pages from '../pages/pages';
 
 defaults(process.env, env);
 debug.enable(process.env.DEBUG);
@@ -38,11 +38,11 @@ class ServerApplication {
 
         try {
             var route = this.getRoute(request.path) || ERROR_404,
+                { actions = [] } = pages[route],
                 store = new Store({
                     reducers: [Todos],
-                    state: Object.assign({}, initialState, { route })
-                }),
-                html = this.getHtml(store);
+                    state: Object.assign({}, { route })
+                });
 
             logInfo('route', route);
 
@@ -50,14 +50,22 @@ class ServerApplication {
                 response.status(404);
             }
 
+            Promise.all(actions.map(Action => new Action({ store })))
+                .then(() => response.send(this.getHtml(store)))
+                .catch(error => {
+                    this.send500({ error, response });
+                });
+
         } catch (error) {
-            logError(error);
-            response.status(500);
-            html = `<h1>Error 500</h1>
-                <p>${process.env.NODE_ENV === 'development' ? error + '' : 'Internal server error'}</p>`;
-        } finally {
-            response.send(html);
+            this.send500({ error, response });
         }
+    }
+
+    send500({ error, response }) {
+        logError(error);
+        response.status(500);
+        response.send(`<h1>Error 500</h1>
+            <p>${process.env.NODE_ENV === 'development' ? error + '' : 'Internal server error'}</p>`);
     }
 
     getHtml(store = {}) {

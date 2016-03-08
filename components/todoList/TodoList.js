@@ -81,7 +81,6 @@ TodoList.connect = function({
         todosById = {}
     } = {}
 } = {}) {
-
     return {
         todos,
         todosById
