@@ -1,4 +1,5 @@
 import express from 'express';
+import crypto from 'crypto';
 import { Store, renderToString } from 'jsunit';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
@@ -69,17 +70,18 @@ class ServerApplication {
     }
 
     getHtml(store = {}) {
+        let content = renderToString({
+                component: Application
+            }, store),
+            checksum = crypto.createHash('md5').update(content, 'utf8').digest('hex');
+
         return `<!DOCTYPE html><html>
             <head>
                 <title>${this.getTitle()}</title>
                 ${this.getCss()}
             </head>
             <body>
-                <div id='application'>${renderToString([
-                    {
-                        component: Application
-                    }
-                ], store)}</div>
+                <div data-jsunit-checksum="${checksum}" id="application">${content}</div>
                 ${this.getScripts(store)}
             </body>
         </html>`;
@@ -93,10 +95,6 @@ class ServerApplication {
         return ['/components/application/application.less'].map(path => {
             return `<link rel="stylesheet/less" type="text/css" href="${staticRoot}${path}"/>`;
         });
-    }
-
-    getCss() {
-        return '';
     }
 
     getScripts(store) {
