@@ -24,8 +24,7 @@
             2,
             {
                 "vars": "all",
-                "args": "after-used",
-                "varsIgnorePattern": "^React$"
+                "args": "after-used"
             }
         ]
     },

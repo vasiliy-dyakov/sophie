@@ -4,10 +4,11 @@ import Button from '../button/Button';
 import Item from './TodoListItem';
 import GetTodos from '../../actions/GetTodos';
 import AddTodo from '../../actions/AddTodo';
-import EditTodo from '../../actions/EditTodo';
-import RemoveTodo from '../../actions/RemoveTodo';
 
 class TodoList extends Component {
+    handleNewTodo = (event) => {
+        this.props.actions.AddTodo({});
+    }
 
     render() {
         let { todos = [] } = this.props;
@@ -56,6 +57,9 @@ class TodoList extends Component {
                             },
                             {
                                 component: Button,
+                                props: {
+                                    onClick: this.handleNewTodo
+                                },
                                 children: [this.props.buttonText]
                             }
                         ]
@@ -72,12 +76,12 @@ TodoList.types = {
     todosById: 'object'
 };
 TodoList.defaults = {
-    todos: [],
     todosById: {}
 };
+TodoList.required = ['todos'];
 
 TodoList.initActions = [GetTodos];
-TodoList.actions = [AddTodo, EditTodo, RemoveTodo];
+TodoList.actions = [AddTodo];
 
 TodoList.watch = ['todos'];
 TodoList.connect = function({
@@ -91,5 +95,7 @@ TodoList.connect = function({
         todosById
     };
 };
+
+TodoList.autoBind = ['handleNewTodo'];
 
 export default TodoList;
