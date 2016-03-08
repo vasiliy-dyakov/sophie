@@ -6,7 +6,7 @@ import GetTodos from '../../actions/GetTodos';
 import AddTodo from '../../actions/AddTodo';
 
 class TodoList extends Component {
-    handleNewTodo = (event) => {
+    handleNewTodo() {
         this.props.actions.AddTodo({});
     }
 

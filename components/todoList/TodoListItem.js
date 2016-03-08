@@ -4,16 +4,16 @@ import EditTodo from '../../actions/EditTodo';
 import RemoveTodo from '../../actions/RemoveTodo';
 
 class TodoListItem extends Component {
-    handleSave(event) {
+    handleSave() {
         this.props.actions.EditTodo({});
     }
 
-    handleRemove(event) {
+    handleRemove() {
         this.props.actions.RemoveTodo({ id: this.props.todo.id });
     }
 
     render() {
-        let { children } = this;
+        let { children, todo } = this.props;
         // return template `<li class="todo-list__item">
         //     ${todo.text}
         //     ${children}
@@ -26,7 +26,6 @@ class TodoListItem extends Component {
                 component: 'li',
                 props: {
                     'class': 'todo-list__item'
-                    owner: this
                 },
                 children: [
                     todo.text,
