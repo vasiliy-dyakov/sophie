@@ -13,6 +13,6 @@ describe('Button', () => {
     });
 
     it('should return expected string', () => {
-        expect(renderToString(button)).toEqual('<button>Button1 + 2 = 3</button>');
+        expect(renderToString(button, { disableIds: true })).toEqual('<button>Button1 + 2 = 3</button>');
     });
 });

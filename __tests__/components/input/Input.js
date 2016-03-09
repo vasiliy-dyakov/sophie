@@ -13,6 +13,6 @@ describe('Input', () => {
     });
 
     it('should return expected string', () => {
-        expect(renderToString(input.render())).toEqual('<input placeholder="Input text here" value=""></input>');
+        expect(renderToString(input.render(), { disableIds: true })).toEqual('<input placeholder="Input text here" value=""></input>');
     });
 });

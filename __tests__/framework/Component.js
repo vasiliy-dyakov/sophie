@@ -21,7 +21,7 @@ describe('renderToString', () => {
     it('should return expected string', () => {
         expect(renderToString([{
             component: Block
-        }])).toEqual('<div class="block">Text of block</div>');
+        }], { disableIds: true })).toEqual('<div class="block">Text of block</div>');
     });
 
 });
