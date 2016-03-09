@@ -72,7 +72,10 @@ class ServerApplication {
     getHtml(store = {}) {
         let content = renderToString({
                 component: Application
-            }, store),
+            }, {
+                store,
+                generateIds: true
+            }),
             checksum = crypto.createHash('md5').update(content, 'utf8').digest('hex');
 
         return `<!DOCTYPE html><html>
