@@ -9,18 +9,16 @@ function Button({
     //     ${children}
     // </button>`;
 
-    return [
-        {
-            component: 'button',
-            props: {
-                onClick: onClick
-            },
-            children: [
-                text,
-                children
-            ]
-        }
-    ];
+    return {
+        component: 'button',
+        props: {
+            onClick: onClick
+        },
+        children: [
+            text,
+            children
+        ]
+    };
 }
 
 Button.types = {

@@ -2,17 +2,15 @@ import { Component, renderToString } from 'jsunit';
 
 class Block extends Component {
     render() {
-        return [
-            {
-                component: 'div',
-                props: {
-                    'class': 'block'
-                },
-                children: [
-                    'Text of block'
-                ]
-            }
-        ];
+        return {
+            component: 'div',
+            props: {
+                'class': 'block'
+            },
+            children: [
+                'Text of block'
+            ]
+        };
     }
 }
 

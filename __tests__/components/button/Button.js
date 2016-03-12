@@ -9,7 +9,7 @@ describe('Button', () => {
     });
 
     it('should return expected JSON', () => {
-        expect(JSON.stringify(button)).toEqual('[{"component":"button","props":{},"children":["Button",["1 + 2 = ",3]]}]');
+        expect(JSON.stringify(button)).toEqual('{"component":"button","props":{},"children":["Button",["1 + 2 = ",3]]}');
     });
 
     it('should return expected string', () => {

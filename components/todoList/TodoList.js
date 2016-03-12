@@ -24,50 +24,48 @@ class TodoList extends Component {
         //     ${this.props.children}
         // </div>`;
 
-        return [
-            {
-                component: 'div',
-                props: {
-                    'class': 'todo-list'
+        return {
+            component: 'div',
+            props: {
+                'class': 'todo-list'
+            },
+            children: [
+                {
+                    component: 'ul',
+                    props: {
+                        'class': 'todo-list__list'
+                    },
+                    children: todos.map(todo => [{
+                        component: Item,
+                        props: {
+                            todo
+                        }
+                    }])
                 },
-                children: [
-                    {
-                        component: 'ul',
-                        props: {
-                            'class': 'todo-list__list'
-                        },
-                        children: todos.map(todo => [{
-                            component: Item,
+                {
+                    component: 'div',
+                    props: {
+                        'class': 'todo-list__add'
+                    },
+                    children: [
+                        {
+                            component: Input,
                             props: {
-                                todo
+                                placeholder: 'New todo'
                             }
-                        }])
-                    },
-                    {
-                        component: 'div',
-                        props: {
-                            'class': 'todo-list__add'
                         },
-                        children: [
-                            {
-                                component: Input,
-                                props: {
-                                    placeholder: 'New todo'
-                                }
+                        {
+                            component: Button,
+                            props: {
+                                onClick: this.handleNewTodo
                             },
-                            {
-                                component: Button,
-                                props: {
-                                    onClick: this.handleNewTodo
-                                },
-                                children: [this.props.buttonText]
-                            }
-                        ]
-                    },
-                    this.props.children
-                ]
-            }
-        ];
+                            children: [this.props.buttonText]
+                        }
+                    ]
+                },
+                this.props.children
+            ]
+        };
     }
 }
 

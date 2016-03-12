@@ -9,24 +9,22 @@ class Layout extends Component {
         //     ${this.props.children}
         // </div>`;
 
-        return [
-            {
-                component: 'div',
-                props: {
-                    'class': 'layout'
-                },
-                children: [
-                    {
-                        component: 'div',
-                        props: {
-                            'class': 'layout__header'
-                        },
-                        children: [this.props.headerText]
+        return {
+            component: 'div',
+            props: {
+                'class': 'layout'
+            },
+            children: [
+                {
+                    component: 'div',
+                    props: {
+                        'class': 'layout__header'
                     },
-                    this.props.children
-                ]
-            }
-        ];
+                    children: [this.props.headerText]
+                },
+                this.props.children
+            ]
+        };
     }
 }
 

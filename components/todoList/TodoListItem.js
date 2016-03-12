@@ -21,34 +21,32 @@ class TodoListItem extends Component {
         //     <${Button} class="todo-list__remove" onClick=${this.handleRemove}>remove</${Button}>
         // </li>`;
 
-        return [
-            {
-                component: 'li',
-                props: {
-                    'class': 'todo-list__item'
-                },
-                children: [
-                    todo.text,
-                    children,
-                    {
-                        component: Button,
-                        props: {
-                            'class': 'todo-list__edit',
-                            onClick: this.handleSave
-                        },
-                        children: ['edit']
+        return {
+            component: 'li',
+            props: {
+                'class': 'todo-list__item'
+            },
+            children: [
+                todo.text,
+                children,
+                {
+                    component: Button,
+                    props: {
+                        'class': 'todo-list__edit',
+                        onClick: this.handleSave
                     },
-                    {
-                        component: Button,
-                        props: {
-                            'class': 'todo-list__remove',
-                            onClick: this.handleRemove
-                        },
-                        children: ['remove']
-                    }
-                ]
-            }
-        ];
+                    children: ['edit']
+                },
+                {
+                    component: Button,
+                    props: {
+                        'class': 'todo-list__remove',
+                        onClick: this.handleRemove
+                    },
+                    children: ['remove']
+                }
+            ]
+        };
     }
 }
 

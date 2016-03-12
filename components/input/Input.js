@@ -16,17 +16,15 @@ class Input extends Component {
         //     onClick=${onClick}
         // />`;
 
-        return [
-            {
-                component: 'input',
-                props: {
-                    placeholder,
-                    value,
-                    onChange,
-                    onClick
-                }
+        return {
+            component: 'input',
+            props: {
+                placeholder,
+                value,
+                onChange,
+                onClick
             }
-        ];
+        };
     }
 }
 

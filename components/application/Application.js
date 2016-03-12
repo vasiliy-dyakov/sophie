@@ -16,11 +16,9 @@ class Application extends Component {
     render() {
         let PageComponent = pages[this.props.route || 'Index'];
 
-        return [
-            {
-                component: PageComponent
-            }
-        ];
+        return {
+            component: PageComponent
+        };
     }
 }
 

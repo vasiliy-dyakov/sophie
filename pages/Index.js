@@ -11,7 +11,7 @@ class Index extends Component {
         //     </${TodoList}>
         // </${Layout}>`;
 
-        return [{
+        return {
             component: Layout,
             children: [
                 {
@@ -21,6 +21,7 @@ class Index extends Component {
                 {
                     component: TodoList,
                     props: {
+                        key: 'myTodos',
                         buttonText: 'Add todo'
                     },
                     children: [
@@ -31,7 +32,7 @@ class Index extends Component {
                     ]
                 }
             ]
-        }];
+        };
     }
 }
 
