@@ -9,11 +9,11 @@ class ClientApplication {
             state
         });
 
-        renderDOM(
-            {component: Application},
+        renderDOM({
+            json: {component: Application},
             store,
-            document.getElementById('application')
-        );
+            domNode: document.getElementById('application')
+        });
     }
 }
 
