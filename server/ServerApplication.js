@@ -1,12 +1,10 @@
 import express from 'express';
-import crypto from 'crypto';
-import { Store, renderToString } from 'jsunit';
+import { Store } from 'jsunit';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';
 import Todos from '../reducers/Todos';
 import staticConfig from '../configs/static';
-import Application from '../components/application/Application';
 import env from '../configs/env';
 import * as pages from '../pages/pages';
 
@@ -70,21 +68,13 @@ class ServerApplication {
     }
 
     getHtml(store = {}) {
-        let content = renderToString({
-                component: Application
-            }, {
-                store,
-                generateIds: true
-            }),
-            checksum = crypto.createHash('md5').update(content, 'utf8').digest('hex');
-
         return `<!DOCTYPE html><html>
             <head>
                 <title>${this.getTitle()}</title>
                 ${this.getCss()}
             </head>
             <body>
-                <div data-jsunit-checksum="${checksum}" id="application">${content}</div>
+                <div id="application"></div>
                 ${this.getScripts(store)}
             </body>
         </html>`;
