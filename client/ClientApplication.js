@@ -9,11 +9,7 @@ class ClientApplication {
             state
         });
 
-        attach({
-            json: t7 `<unit Class=${Application} />`,
-            store,
-            domNode: document.getElementById('application')
-        });
+        attach(t7 `<unit Class=${Application} />`, document.getElementById('application'), { store });
     }
 }
 
