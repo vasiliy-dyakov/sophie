@@ -1,4 +1,4 @@
-import { Store, VirtualDOM } from 'jsunit';
+import { Store, attach } from 'jsunit';
 import Application from '../components/application/Application.js';
 import Todos from '../reducers/Todos';
 
@@ -9,7 +9,7 @@ class ClientApplication {
             state
         });
 
-        new VirtualDOM({
+        attach({
             json: {component: Application},
             store,
             domNode: document.getElementById('application')
