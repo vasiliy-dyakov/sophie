@@ -1,30 +1,16 @@
-import { Component/*, template*/ } from 'jsunit';
+import { Component, t7 } from 'jsunit';
 
 class Input extends Component {
     render() {
         var {
             placeholder,
-            value,
+            value = '',
             onClick,
             onChange
-        } = this.props;
+        } = this.props || {};
 
-        // return template `<input
-        //     placeholer="${placeholder}"
-        //     value="${value}"
-        //     onChange=${onChange}
-        //     onClick=${onClick}
-        // />`;
-
-        return {
-            component: 'input',
-            props: {
-                placeholder,
-                value,
-                onChange,
-                onClick
-            }
-        };
+        return t7 `<input placeholder=${placeholder}
+            value=${value} />`;
     }
 }
 

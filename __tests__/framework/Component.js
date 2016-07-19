@@ -1,25 +1,15 @@
-import { Component, renderToString } from 'jsunit';
+import { Component, renderToString, t7 } from 'jsunit';
 
 class Block extends Component {
     render() {
-        return {
-            component: 'div',
-            props: {
-                'class': 'block'
-            },
-            children: [
-                'Text of block'
-            ]
-        };
+        return t7 `<div class="block">Text of block</div>`;
     }
 }
 
 describe('renderToString', () => {
 
     it('should return expected string', () => {
-        expect(renderToString([{
-            component: Block
-        }], { disableIds: true })).toEqual('<div class="block">Text of block</div>');
+        expect(renderToString(t7 `<unit Class=${Block} />`)).toEqual('<div class="block">Text of block</div>');
     });
 
 });

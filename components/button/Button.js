@@ -1,24 +1,13 @@
-// import { template } from 'jsunit';
+import { t7 } from 'jsunit';
 
 function Button({
     text = '',
     onClick
 } = {}, children) {
-    // return template `<button onClick=${onClick}>
-    //     ${text}
-    //     ${children}
-    // </button>`;
-
-    return {
-        component: 'button',
-        props: {
-            onClick: onClick
-        },
-        children: [
-            text,
-            children
-        ]
-    };
+    return t7 `<button>
+        ${text}
+        ${children}
+    </button>`;
 }
 
 Button.types = {

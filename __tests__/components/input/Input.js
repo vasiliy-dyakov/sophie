@@ -1,18 +1,9 @@
 import Input from '../../../components/input/Input';
-import { renderToString } from 'jsunit';
+import { renderToString, t7 } from 'jsunit';
 
 describe('Input', () => {
-    let input;
-
-    beforeEach(() => {
-        input = new Input({ placeholder: 'Input text here', value: '' });
-    });
-
-    it('should return expected JSON', () => {
-        expect(JSON.stringify(input.render())).toEqual('{"component":"input","props":{"placeholder":"Input text here","value":""}}');
-    });
-
     it('should return expected string', () => {
-        expect(renderToString(input.render(), { disableIds: true })).toEqual('<input placeholder="Input text here" value=""></input>');
+        expect(renderToString(t7 `<unit Class=${Input} placeholder="Input text here" value="" />`))
+            .toEqual('<input placeholder="Input text here" value=""></input>');
     });
 });

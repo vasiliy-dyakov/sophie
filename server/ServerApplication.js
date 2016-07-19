@@ -1,11 +1,12 @@
 import express from 'express';
-import { Store } from 'jsunit';
+import { Store, renderToString, t7 } from 'jsunit';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';
 import Todos from '../reducers/Todos';
 import staticConfig from '../configs/static';
 import env from '../configs/env';
+import Application from '../components/application/Application';
 import * as pages from '../pages/pages';
 
 defaults(process.env, env);
@@ -68,13 +69,15 @@ class ServerApplication {
     }
 
     getHtml(store = {}) {
+        let html = renderToString(t7 `<unit Class=${Application} />`, { store });
+
         return `<!DOCTYPE html><html>
             <head>
                 <title>${this.getTitle()}</title>
                 ${this.getCss()}
             </head>
             <body>
-                <div id="application"></div>
+                <div id="application">${html}</div>
                 ${this.getScripts(store)}
             </body>
         </html>`;

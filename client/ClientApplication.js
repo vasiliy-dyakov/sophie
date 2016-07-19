@@ -1,4 +1,4 @@
-import { Store, attach } from 'jsunit';
+import { Store, attach, t7 } from 'jsunit';
 import Application from '../components/application/Application.js';
 import Todos from '../reducers/Todos';
 
@@ -10,7 +10,7 @@ class ClientApplication {
         });
 
         attach({
-            json: {component: Application},
+            json: t7 `<unit Class=${Application} />`,
             store,
             domNode: document.getElementById('application')
         });
