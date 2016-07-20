@@ -4,13 +4,12 @@ class Input extends Component {
     render() {
         var {
             placeholder,
-            value = '',
+            value,
             onClick,
             onChange
         } = this.props || {};
 
-        return t7 `<input placeholder=${placeholder}
-            value=${value} />`;
+        return t7 `<input placeholder=${placeholder} value=${value} />`;
     }
 }
 

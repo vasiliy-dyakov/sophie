@@ -18,7 +18,7 @@ class TodoList extends Component {
                 ${todos.map(todo => t7 `<unit Class=${Item} todo=${todo} />`)}
             </ul>
             <div class="todo-list__add">
-                <unit Class=${Input} placeholder=${'New todo'} />
+                <unit Class=${Input} placeholder="New todo" />
                 <unit Class=${Button} onClick=${this.handleNewTodo}>${this.props.buttonText}</unit>
             </div>
             ${this.props.children}
