@@ -1,4 +1,4 @@
-import { Component, t7 } from 'jsunit';
+import { Component, connect, t7 } from 'jsunit';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Item from './TodoListItem';
@@ -38,8 +38,9 @@ TodoList.required = ['todos'];
 TodoList.initActions = [GetTodos];
 TodoList.actions = [AddTodo];
 
-TodoList.watch = ['todos'];
-TodoList.connect = function({
+TodoList.autoBind = ['handleNewTodo'];
+
+export default connect(function({
     todos: {
         todos = [],
         todosById = {}
@@ -49,8 +50,4 @@ TodoList.connect = function({
         todos,
         todosById
     };
-};
-
-TodoList.autoBind = ['handleNewTodo'];
-
-export default TodoList;
+})(TodoList);
