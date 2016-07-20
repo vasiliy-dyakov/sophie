@@ -1,4 +1,4 @@
-import { Component, t7 } from 'jsunit';
+import { Component, connect, t7 } from 'jsunit';
 import * as pages from '../../pages/pages';
 
 class Application extends Component {
@@ -20,11 +20,8 @@ class Application extends Component {
     }
 }
 
-Application.watch = ['route'];
-Application.connect = function({ route }) {
+export default connect(({ routes = {} }) => {
     return {
-        route
+        route: routes.route
     };
-};
-
-export default Application;
+})(Application);

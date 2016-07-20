@@ -4,6 +4,7 @@ import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';
 import Todos from '../reducers/Todos';
+import Routes from '../reducers/Routes';
 import staticConfig from '../configs/static';
 import env from '../configs/env';
 import Application from '../components/application/Application';
@@ -40,8 +41,8 @@ class ServerApplication {
             var route = this.getRoute(request.path) || ERROR_404,
                 { initActions = [] } = pages[route],
                 store = new Store({
-                    reducers: [Todos],
-                    state: Object.assign({}, { route })
+                    reducers: [Todos, Routes],
+                    state: Object.assign({}, { routes: { route } })
                 });
 
             logInfo('route', route);
