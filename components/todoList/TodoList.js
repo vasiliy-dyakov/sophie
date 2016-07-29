@@ -34,6 +34,7 @@ TodoList.defaults = {
     todosById: {}
 };
 TodoList.required = ['todos'];
+TodoList.singleton = true;
 
 TodoList.initActions = [GetTodos];
 TodoList.actions = [AddTodo];

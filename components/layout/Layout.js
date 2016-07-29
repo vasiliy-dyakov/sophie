@@ -11,6 +11,8 @@ class Layout extends Component {
     }
 }
 
+Layout.singleton = true;
+
 Layout.types = {
     headerText: 'string'
 };

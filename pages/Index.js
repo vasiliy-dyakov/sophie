@@ -13,6 +13,8 @@ class Index extends Component {
     }
 }
 
+Index.singleton = true;
+
 Index.initActions = [].concat(TodoList.initActions);
 
 export default Index;

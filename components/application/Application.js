@@ -20,6 +20,8 @@ class Application extends Component {
     }
 }
 
+Application.singleton = true;
+
 export default connect(({ routes = {} }) => {
     return {
         route: routes.route
