@@ -4,7 +4,7 @@ function Button({
     text = '',
     onClick
 } = {}, children) {
-    return t7 `<button>
+    return t7 `<button onclick=${onClick}>
         ${text}
         ${children}
     </button>`;
