@@ -51,7 +51,7 @@ class ServerApplication {
                 response.status(404);
             }
 
-            Promise.all(initActions.map(Action => new Action({ store })))
+            Promise.all(initActions.map(action => action({ store })()))
                 .then(() => response.send(this.getHtml(store)))
                 .catch(error => {
                     this.send500({ error, response });

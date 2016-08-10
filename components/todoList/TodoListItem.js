@@ -1,7 +1,5 @@
 import { Component, t7 } from 'jsunit';
 import Button from '../button/Button';
-import EditTodo from '../../actions/EditTodo';
-import RemoveTodo from '../../actions/RemoveTodo';
 
 class TodoListItem extends Component {
     handleSave() {
@@ -23,7 +21,6 @@ class TodoListItem extends Component {
     }
 }
 
-TodoListItem.actions = [EditTodo, RemoveTodo];
 TodoListItem.autoBind = ['handleSave', 'handleRemove'];
 
 export default TodoListItem;

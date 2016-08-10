@@ -1,16 +1,14 @@
-import { Action } from 'jsunit';
+import { createAction } from 'jsunit';
 
-class AddTodo extends Action {
-    execute({ payload: newTodo, store }) {
-        let { todosById } = store.state.todos,
-            ids = Object.keys(todosById).sort((a, b) => a > b ? 1 : -1),
-            length = ids.length,
-            id = length > 0
-                ? ids[length - 1] + 1
-                : 0;
+const AddTodo = createAction(({ payload: newTodo, store }) => {
+    let { todosById } = store.state.todos,
+        ids = Object.keys(todosById).sort((a, b) => a > b ? 1 : -1),
+        length = ids.length,
+        id = length > 0
+            ? ids[length - 1] + 1
+            : 0;
 
-        store.emit('ADD_TODO', Object.assign(newTodo, {id}));
-    }
-}
+    store.emit('ADD_TODO', Object.assign(newTodo, {id}));
+});
 
 export default AddTodo;
