@@ -2,12 +2,14 @@ import { Component, connect, t7 } from 'jsunit';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Item from './TodoListItem';
-import GetTodos from '../../actions/GetTodos';
-import AddTodo from '../../actions/AddTodo';
+import getTodos from '../../actions/GetTodos';
+import addTodo from '../../actions/AddTodo';
 
 class TodoList extends Component {
     handleNewTodo() {
-        this.props.actions.AddTodo({});
+        this.props.addTodo({
+            text: 'new todo'
+        });
     }
 
     render() {
@@ -36,19 +38,25 @@ TodoList.defaults = {
 TodoList.required = ['todos'];
 TodoList.singleton = true;
 
-TodoList.initActions = [GetTodos];
-TodoList.actions = [AddTodo];
+TodoList.initActions = [getTodos];
+TodoList.actions = { addTodo };
 
 TodoList.autoBind = ['handleNewTodo'];
 
-export default connect(function({
-    todos: {
-        todos = [],
-        todosById = {}
-    } = {}
-} = {}) {
-    return {
-        todos,
-        todosById
+const
+    get = function({
+        todos: {
+            todos = [],
+            todosById = {}
+        } = {}
+    } = {}) {
+        return {
+            todos,
+            todosById
+        };
+    },
+    actions = {
+        addTodo
     };
-})(TodoList);
+
+export default connect({ get, actions })(TodoList);
